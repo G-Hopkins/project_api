@@ -1,0 +1,99 @@
+{% extends 'bootstrap/base.html' %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block styles %}
+{{ super() }}
+	<style>
+		body { background: #e8f1f9; }
+	</style>
+{% endblock %}
+
+{% block title %}
+Heston Model
+{% endblock %}
+
+{% block content %}
+
+<div class="container">
+    <div class="row">
+      <div class="col-md-10 col-lg-8 mx-lg-auto mx-md-auto">
+        <h1 class="pt-5 pb-2">Heston Model</h1>
+        <div class="column">
+        <body>
+            <div style="width: 350px; float: left;">
+            <style type="text/css">
+                .tg  {border-collapse:collapse;border-spacing:0;}
+                .tg td{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
+                overflow:hidden;padding:10px 5px;word-break:normal;}
+                .tg th{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
+                font-weight:normal;overflow:hidden;padding:10px 5px;word-break:normal;}
+                .tg .tg-c3ow{border-color:inherit;text-align:center;vertical-align:top}
+                </style>
+                <table class="tg">
+                <thead>
+                <tr>
+                    <th class="tg-c3ow">Parameter</th>
+                    <th class="tg-c3ow">Value</th>
+                </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="tg-c3ow">Spot price</td>
+                        <td class="tg-c3ow">{{spot_price}}</td>
+                    </tr>
+                    <tr>
+                        <td class="tg-c3ow">Strike price</td>
+                        <td class="tg-c3ow">{{strike_price}}</td>
+                    </tr>
+                    <tr>
+                        <td class="tg-c3ow">Risk-free rate</td>
+                        <td class="tg-c3ow">{{r}}</td>
+                    </tr>
+                    <tr>
+                        <td class="tg-c3ow">Time-to-maturity</td>
+                        <td class="tg-c3ow">{{t}}</td>
+                    </tr>
+                    <tr>
+                        <td class="tg-c3ow">Volatility</td>
+                        <td class="tg-c3ow">{{v}}</td>
+                    </tr>
+                    <tr>
+                        <td class="tg-c3ow">Volatility of volatility</td>
+                        <td class="tg-c3ow">{{vol_of_v}}</td>
+                    </tr>
+                    <tr>
+                        <td class="tg-c3ow">Long average variance</td>
+                        <td class="tg-c3ow">{{theta}}</td>
+                    </tr>
+                    <tr>
+                        <td class="tg-c3ow">Reversion speed</td>
+                        <td class="tg-c3ow">{{k}}</td>
+                    </tr>
+                    <tr>
+                        <td class="tg-c3ow">Correlation</td>
+                        <td class="tg-c3ow">{{p}}</td>
+                    </tr>
+                    </tbody>
+                    </table>
+        </div>
+        <p>{{ wtf.quick_form(back_button) }}</p>
+        <div class="column">
+        <body>
+            <p>Call Price under the Heston Monte Carlo Model: {{ heston_call}}</p>
+            <p>Call price under ANN-4: {{ ann_4_call }}</p> 
+            <p> </p>
+            <p>Put Price under the Heston Monte Carlo Model: {{ heston_put }}</p>
+            <p>Put Price under ANN-4: {{ ann_4_put }}</p>
+        </body>
+        </body>
+        </div>
+    </div>
+</div>
+<div>
+    <p></p>
+    <p> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+        Time taken to value call and put options under the Heston Monte Carlo Model: {{heston_time}} seconds</p>
+    <p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+        Time taken to value call and put options under ANN-4: {{ann_4_time}} seconds</p>
+</div>
+{% endblock %}

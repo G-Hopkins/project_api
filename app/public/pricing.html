@@ -1,0 +1,91 @@
+{% extends 'bootstrap/base.html' %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block styles %}
+{{ super() }}
+	<style>
+		body { background: #e8f1f9; }
+	</style>
+{% endblock %}
+
+{% block title %}
+Black-Scholes Model
+{% endblock %}
+
+{% block content %}
+
+<div class="container">
+    <div class="row">
+      <div class="col-md-10 col-lg-8 mx-lg-auto mx-md-auto">
+        <h1 class="pt-5 pb-2">Black-Scholes Model</h1>
+        <div class="column">
+        <body>
+            <div style="width: 350px; float: left; height:350px">
+            <style type="text/css">
+                .tg  {border-collapse:collapse;border-spacing:0;}
+                .tg td{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
+                overflow:hidden;padding:10px 5px;word-break:normal;}
+                .tg th{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
+                font-weight:normal;overflow:hidden;padding:10px 5px;word-break:normal;}
+                .tg .tg-c3ow{border-color:inherit;text-align:center;vertical-align:top}
+                </style>
+                <table class="tg">
+                    <thead>
+                    <tr>
+                        <th class="tg-c3ow">Parameter</th>
+                        <th class="tg-c3ow">Value</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="tg-c3ow">Spot price</td>
+                            <td class="tg-c3ow">{{spot_price}}</td>
+                        </tr>
+                        <tr>
+                            <td class="tg-c3ow">Strike price</td>
+                            <td class="tg-c3ow">{{strike_price}}</td>
+                        </tr>
+                        <tr>
+                            <td class="tg-c3ow">Risk-free rate</td>
+                            <td class="tg-c3ow">{{r}}</td>
+                        </tr>
+                        <tr>
+                            <td class="tg-c3ow">Time-to-maturity</td>
+                            <td class="tg-c3ow">{{t}}</td>
+                        </tr>
+                        <tr>
+                            <td class="tg-c3ow">Volatility</td>
+                            <td class="tg-c3ow">{{v}}</td>
+                        </tr>
+                        </tbody>
+                        </table>
+        </div>
+        <p>{{ wtf.quick_form(back_button) }}</p>
+        <div class="column">
+        <body>
+            <p>Call Price under ANN-1: {{ ann_1_call }}</p>
+            <p>Call Price under ANN-2: {{ ann_2_call }}</p>
+            <p>Call Price under Black-Scholes: {{ bs_call }}</p> 
+            <p> </p>
+            <p>Put Price under ANN-1: {{ ann_1_put }}</p> 
+            <p>Put Price under ANN-3: {{ ann_3_put }}</p>
+            <p> Put Price under Black-Scholes: {{ bs_put }}</p>
+        </body>
+        </body>
+        </div>
+    </div>
+</div>
+<div>
+    <p></p>
+    <p> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+        Time taken to value call and put options under the Black-Scholes Model: {{bs_time}} seconds <br>
+        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+        Time taken to value call and put options under ANN-1: {{ann_1_time}} seconds
+    </p>
+    <p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+        Time taken to compute call option valuation under ANN-2: {{ann_2_time}} seconds <br>
+        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+        Time taken to compute put option valuation under ANN-3: {{ann_3_time}} seconds
+    </p>
+</div>
+{% endblock %}

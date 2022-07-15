@@ -1,0 +1,69 @@
+
+{% extends 'bootstrap/base.html' %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block styles %}
+{{ super() }}
+	<style>
+		body { background: #e8f1f9; }
+	</style>
+{% endblock %}
+
+
+{% block title %}
+Option Pricing via Neural Networks
+{% endblock %}
+
+
+{% block content %}
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-10 col-lg-8 mx-lg-auto mx-md-auto">
+
+      <h1 class="pt-5 pb-2">Option Pricing via Neural Networks</h1>
+
+      <h5>For pricing options under the Black-Scholes model, fill in the form below. 
+        This will compute prices under the Black-Scholes model, ANN-1, ANN-2 and ANN-3.</h5>
+    
+        <ul>
+        <li style="color:#FF0000"> To see how the input data should be represented, click the 'Fill Black-Scholes with random test inputs' button.</li>
+        </ul>
+      {{ wtf.quick_form(form) }}
+      <p></p>
+
+      {{ wtf.quick_form(filler_bs) }}
+
+      <p class="pt-5"><strong>{{ message }}</strong></p>
+
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-10 col-lg-8 mx-lg-auto mx-md-auto">
+
+      <h5>
+        For pricing options under the Heston model via Monte Carlo, fill in the form below.
+        This will compute prices under the Heston model and ANN-4.
+      </h5>
+
+      <ul>
+        <li style="color:#FF0000">To see how the input data should be represented, click the 'Fill...' button.</li>
+        <li style="color:#FF0000">The Feller Condition must be met: 2 * Long average variance * reversion speed > Volatility of volatility^2 </li>
+        <li style="color:#FF0000">The Correlation parameter must be negative.</li>
+      </ul>
+       <!--<p style="color:#FF0000">To see how the input data should be represented, click the 'Fill Heston with random test inputs' button. </p>
+      <p style="color:#FF0000">The Feller Condition must be met: 2 * Long average variance * reversion speed </p>
+-->
+      {{ wtf.quick_form(form2) }}
+      <p></p>
+
+      {{ wtf.quick_form(filler_heston) }}
+
+      <p class="pt-5"><strong>{{ message }}</strong></p>
+
+    </div>
+    
+  </div>
+</div>
+
+{% endblock %}
